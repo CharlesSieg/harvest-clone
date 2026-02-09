@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: harvest_claude
+      POSTGRES_USER: harvest
+      POSTGRES_PASSWORD: harvest123
+    ports:
+      - "5435:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U harvest"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - "3031:5000"
+    environment:
+      DATABASE_URL: postgresql://harvest:harvest123@db:5432/harvest_claude
+      FLASK_ENV: development
+      UPLOAD_FOLDER: /app/uploads
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3030:3030"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  uploads:

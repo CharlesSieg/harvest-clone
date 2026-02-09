@@ -1,0 +1,64 @@
+:root {
+  --bg: #f6f8f3;
+  --panel: #ffffff;
+  --ink: #1f2b21;
+  --accent: #2e6b42;
+  --accent-soft: #dceadf;
+  --line: #cad5c6;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top right, #eef5ea, var(--bg));
+}
+
+.shell { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+header { background: var(--panel); border: 1px solid var(--line); padding: 1rem; border-radius: 12px; }
+nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+button {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
+button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+section {
+  margin-top: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+input, select {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.4rem;
+  min-height: 34px;
+}
+
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+th, td { border: 1px solid var(--line); padding: 0.45rem; vertical-align: top; font-size: 0.92rem; }
+th { background: var(--accent-soft); text-align: left; }
+.actions { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+.subnav { display: flex; gap: 0.4rem; margin-bottom: 0.8rem; }
+.filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.message { background: #eef7ef; border: 1px solid #b8d2bd; padding: 0.5rem; border-radius: 8px; }
+.invoice-card { margin-top: 1rem; padding: 0.8rem; border: 1px solid var(--line); border-radius: 8px; }
+.invoice-preview { background: #f8faf5; border: 1px dashed var(--line); padding: 0.7rem; margin-bottom: 0.8rem; }
+
+@media (max-width: 700px) {
+  th, td { font-size: 0.8rem; }
+}
